@@ -15,5 +15,16 @@ namespace ArraysStrings.Tests
         //Then
             Assert.Equal("%20", output);
         }
+
+        [Fact]
+        public void ShouldProperlyEncodeTwoWordsWithSpace()
+        {
+        //Given
+            var input = "Hello world  ";
+        //When  
+            var output = URLify.EncodeUrl(input);
+        //Then
+            Assert.Equal("Hello%20World", output);
+        }
     }
 }
