@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/CrackingCoding/ArraysStrings/bin/Debug/netcoreapp3.0/ArraysStrings.dll",
+            "program": "${workspaceFolder}/CrackingCoding/ArraysStrings/bin/Debug/netcoreapp2.1/ArraysStrings.dll",
             "args": [],
             "cwd": "${workspaceFolder}/CrackingCoding/ArraysStrings",
             "console": "internalConsole",

@@ -8,22 +8,22 @@ namespace ArraysStrings.Tests
         [Fact]
         public void ShouldProperlyEncodeSingleSpace()
         {
-        //Given
+            //Given
             var input = " ";
-        //When
+            //When
             var output = URLify.EncodeUrl(input);
-        //Then
+            //Then
             Assert.Equal("%20", output);
         }
 
         [Fact]
         public void ShouldProperlyEncodeTwoWordsWithSpace()
         {
-        //Given
+            //Given
             var input = "Hello world  ";
-        //When  
+            //When  
             var output = URLify.EncodeUrl(input);
-        //Then
+            //Then
             Assert.Equal("Hello%20World", output);
         }
     }
