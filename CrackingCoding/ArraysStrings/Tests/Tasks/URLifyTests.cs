@@ -9,7 +9,7 @@ namespace ArraysStrings.Tests
         public void ShouldProperlyEncodeSingleSpace()
         {
             //Given
-            var input = " ";
+            var input = "   ";
             //When
             var output = URLify.EncodeUrl(input);
             //Then
@@ -24,7 +24,7 @@ namespace ArraysStrings.Tests
             //When  
             var output = URLify.EncodeUrl(input);
             //Then
-            Assert.Equal("Hello%20World", output);
+            Assert.Equal("Hello%20world", output);
         }
     }
 }
