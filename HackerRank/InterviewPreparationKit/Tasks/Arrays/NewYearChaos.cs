@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace InterviewPreparationKit.Tasks.Arrays
@@ -7,6 +8,16 @@ namespace InterviewPreparationKit.Tasks.Arrays
     /// </Summary>
     public class NewYearChaos
     {
+        private static void Move(int[] arr, int idx, int steps)
+        {
+            for(var i = 0; i < steps; i++)
+            {
+                var cur = arr[idx + i];
+                arr[idx + i] = arr[idx + i + 1];
+                arr[idx + i + 1] = cur;  
+            }
+        } 
+
         public static int MinimumBribes(int[] q)
         {
             int bribes = 0;
@@ -18,10 +29,23 @@ namespace InterviewPreparationKit.Tasks.Arrays
 
                 if (diff > 0)
                 {
+                    Move(q, i, diff);
                     bribes += diff;
+                    i--;
                 }
             }
             return bribes;
         }
     }
 }
+
+/*
+1, 2, 5, 3, 7, 8, 6, 4
+-------
+1,2,5,3,7,6,4,8 - 2
+1,2,5,3,6,4,7,8 - 2
+1,2,5,3,4,6,7,8 - 1
+1,2,3,4,5,6,7,8 - 2
+
+
+ */
