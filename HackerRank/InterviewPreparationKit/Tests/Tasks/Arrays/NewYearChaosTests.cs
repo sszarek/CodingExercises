@@ -24,12 +24,12 @@ namespace InterviewPreparationKit.Tests.Tasks.Arrays
         }
 
         [Theory]
-        // [InlineData(new int[] { 2, 1 }, 1)]
-        // [InlineData(new int[] { 1, 3, 2 }, 1)]
-        // [InlineData(new int[] { 3, 1, 2 }, 2)]
+        [InlineData(new int[] { 2, 1 }, 1)]
+        [InlineData(new int[] { 1, 3, 2 }, 1)]
+        [InlineData(new int[] { 3, 1, 2 }, 2)]
         [InlineData(new int[] { 2, 1, 5, 3, 4 }, 3)]
-        // [InlineData(new int[] { 3, 2, 1 }, 3)]
-        // [InlineData(new int[] { 1, 2, 5, 3, 7, 8, 6, 4 }, 7)]
+        [InlineData(new int[] { 3, 2, 1 }, 3)]
+        [InlineData(new int[] { 1, 2, 5, 3, 7, 8, 6, 4 }, 7)]
         public void UnsortedQueue_ReturnsNumberOfBribes(int[] queue, int expected)
         {
             AssertProperSolution(queue, expected);
