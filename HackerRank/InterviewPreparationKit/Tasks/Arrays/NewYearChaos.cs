@@ -13,6 +13,9 @@ namespace InterviewPreparationKit.Tasks.Arrays
             for (var i = 0; i < q.Length; i++)
             {
                 int diff = q[i] - (i + 1);
+                if (diff == 0) continue;
+                if (diff > 2) return -1;
+
                 if (diff > 0)
                 {
                     bribes += diff;
