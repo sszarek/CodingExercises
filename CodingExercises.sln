@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrackingCoding", "CrackingC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArraysStrings", "CrackingCoding\ArraysStrings\ArraysStrings.csproj", "{EBC6C449-A2D6-45EA-8DAB-6EA9C30F2555}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HackerRank", "HackerRank", "{3D13EE06-1CCC-407D-BB25-E58935666B68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewPreparationKit", "HackerRank\InterviewPreparationKit\InterviewPreparationKit.csproj", "{A0FA3EE2-576D-4320-A286-2FF4B851E536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{EBC6C449-A2D6-45EA-8DAB-6EA9C30F2555}.Release|x64.Build.0 = Release|Any CPU
 		{EBC6C449-A2D6-45EA-8DAB-6EA9C30F2555}.Release|x86.ActiveCfg = Release|Any CPU
 		{EBC6C449-A2D6-45EA-8DAB-6EA9C30F2555}.Release|x86.Build.0 = Release|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Debug|x64.Build.0 = Debug|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Debug|x86.Build.0 = Debug|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Release|x64.ActiveCfg = Release|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Release|x64.Build.0 = Release|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Release|x86.ActiveCfg = Release|Any CPU
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EBC6C449-A2D6-45EA-8DAB-6EA9C30F2555} = {7EF64765-27A5-4117-AE5D-2D1695DA9E39}
+		{A0FA3EE2-576D-4320-A286-2FF4B851E536} = {3D13EE06-1CCC-407D-BB25-E58935666B68}
 	EndGlobalSection
 EndGlobal
