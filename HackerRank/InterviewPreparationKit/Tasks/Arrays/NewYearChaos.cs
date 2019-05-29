@@ -21,17 +21,19 @@ namespace InterviewPreparationKit.Tasks.Arrays
         public static int MinimumBribes(int[] q)
         {
             int bribes = 0;
-            for (var i = 0; i < q.Length; i++)
+            for (var i = q.Length - 1; i >= 0; i--)
             {
-                int diff = q[i] - (i + 1);
-                if (diff == 0) continue;
-                if (diff > 2) return -1;
+                if (q[i] == (i + 1)) continue;
 
+                int idx = Array.IndexOf(q, i + 1, Math.Max(i - 2, 0));
+                
+                if (idx == -1) return -1;
+
+                int diff = i - idx;
                 if (diff > 0)
                 {
-                    Move(q, i, diff);
+                    Move(q, idx, diff);
                     bribes += diff;
-                    i--;
                 }
             }
             return bribes;
