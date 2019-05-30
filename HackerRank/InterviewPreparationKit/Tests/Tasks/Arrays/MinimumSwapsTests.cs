@@ -35,6 +35,8 @@ namespace InterviewPreparationKit.Tests.Tasks.Arrays
         [Theory]
         [InlineData(new int[] { 2, 1 }, 1)]
         [InlineData(new int[] { 7, 1, 3, 2, 4, 5, 6 }, 5)]
+        [InlineData(new int[] { 4, 3, 1, 2 }, 3)]
+        [InlineData(new int[] { 2, 3, 4, 1, 5 }, 3)]
         public void ProperyCalculatesMinimumSwaps(int[] input, int expected)
         {
             AssertMinimumSwaps(input, expected);

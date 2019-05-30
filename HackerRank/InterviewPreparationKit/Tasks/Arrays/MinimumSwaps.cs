@@ -17,14 +17,20 @@ namespace InterviewPreparationKit.Tasks.Arrays
         public static int CalculateMinimumSwaps(int[] arr)
         {
             int swaps = 0;
-            for (var i = 0; i < arr.Length; i++)
-            {
-                if (arr[i] == (i + 1)) continue;
-                
-                Swap(arr, i, arr[i] - 1);
-                swaps++;
-            }
+            bool needsCheck = true;
 
+            while (needsCheck)
+            {
+                needsCheck = false;
+                for (var i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] == (i + 1)) continue;
+
+                    Swap(arr, i, arr[i] - 1);
+                    swaps++;
+                    needsCheck = true;
+                }   
+            }
 
             return swaps;
         }
