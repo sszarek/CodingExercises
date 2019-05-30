@@ -5,7 +5,7 @@ namespace InterviewPreparationKit.Tasks.Arrays
     /// </Summary>
     public class ArrayManipulation
     {
-        public static int Manipulate(int n, int[][] queries)
+        public static long Manipulate(int n, int[][] queries)
         {
             long[] initial = new long[n];
             long max = 0;
@@ -28,5 +28,4 @@ namespace InterviewPreparationKit.Tasks.Arrays
 
         }
     }
-}
 }
