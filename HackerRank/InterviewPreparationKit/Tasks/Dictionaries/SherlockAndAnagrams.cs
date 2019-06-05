@@ -59,7 +59,6 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
                         if (IsAnagram(firstSegment, secondSegment))
                         {
                             anagrams++;
-                            Console.WriteLine($"Anagram++: {anagrams}");
                         }
                     }
                 }
