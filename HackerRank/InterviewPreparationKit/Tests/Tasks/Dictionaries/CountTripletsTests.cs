@@ -101,8 +101,11 @@ namespace InterviewPreparationKit.Tests.Tasks.Dictionaries
         }
 
         [Theory]
-        [InlineData(new long[] { 1, 3, 9, 9, 27, 81 }, 3, 6)]
-        [InlineData(new long[] { 1, 1, 2, 2, 4, 4 }, 2, 8)]
+        // [InlineData(new long[] { 1, 3, 9, 9, 27, 81 }, 3, 6)]
+        // [InlineData(new long[] { 1, 1, 2, 2, 4, 4 }, 2, 8)]
+        // [InlineData(new long[] { 4, 2, 1 }, 2, 0)]
+        // [InlineData(new long[] { 0, 0, 0 }, 2, 0)]
+        [InlineData(new long[] { 1, 1, 1 }, 1, 1)]
         public void ProperlyCalculatesNumberOfTriplets(long[] arr, long r, long expected)
         {
             var input = arr.ToList();

@@ -11,8 +11,6 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
     {
         private static readonly long BASE_ONE = 1;
 
-        private static readonly long MAX_NUMBER = 1000000000;
-
         private static bool IsPowerOf(long num, long r)
         {
             if (num == 0)
@@ -20,11 +18,10 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
                 return false;
             }
 
-            int pow = 0;
-            double result = 0;
-            while ((result = Math.Pow(r, pow)) < num)
+            long result = 1;
+            while (result < num)
             {
-                pow++;
+                result = result * r;
             }
 
             return result == num;
@@ -39,14 +36,14 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
                 long value = arr[i];
                 if (IsPowerOf(value, r))
                 {
-                    List<int> numbers = null;
-                    if (!powers.TryGetValue(value, out numbers))
+                    List<int> indexes = null;
+                    if (!powers.TryGetValue(value, out indexes))
                     {
-                        numbers = new List<int>();
-                        powers[value] = numbers;
+                        indexes = new List<int>();
+                        powers[value] = indexes;
                     }
 
-                    numbers.Add(i);
+                    indexes.Add(i);
                 }
             }
 
@@ -55,11 +52,6 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
 
         public static long Count(List<long> arr, long r)
         {
-            if (r == BASE_ONE)
-            {
-                return 0;
-            }
-
             int triplets = 0;
             var powers = IndexPowersOf(arr, r);
 
