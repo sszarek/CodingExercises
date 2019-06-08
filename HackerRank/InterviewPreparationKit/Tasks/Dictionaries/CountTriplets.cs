@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace InterviewPreparationKit.Tasks.Dictionaries
 {
@@ -38,8 +39,8 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
                 long value = arr[i];
                 if (IsPowerOf(value, r))
                 {
-                    List<int> numbers = powers.GetValueOrDefault(value);
-                    if (numbers == null)
+                    List<int> numbers = null;
+                    if (!powers.TryGetValue(value, out numbers))
                     {
                         numbers = new List<int>();
                         powers[value] = numbers;
@@ -71,20 +72,23 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
                 }
 
                 long second = first * r;
-                List<int> secondIndexes = powers.GetValueOrDefault(second);
-                if (secondIndexes == null)
+                List<int> secondIndexes = null;
+                if (!powers.TryGetValue(second, out secondIndexes))
                 {
                     continue;
                 }
 
-                long third = second * r;
-                List<int> thirdIndexes = powers.GetValueOrDefault(third);
-                if (thirdIndexes == null)
+                foreach (int secIdx in secondIndexes.Where(secIdx => secIdx > idx))
                 {
-                    continue;
-                }
+                    long third = second * r;
+                    List<int> thirdIndexes = null;
+                    if (!powers.TryGetValue(third, out thirdIndexes))
+                    {
+                        break;
+                    }
 
-                triplets++;
+                    triplets += thirdIndexes.Where(thirdIdx => thirdIdx > secIdx).Count();
+                }
             }
 
             return triplets;

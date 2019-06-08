@@ -83,5 +83,33 @@ namespace InterviewPreparationKit.Tests.Tasks.Dictionaries
             //Then
             Assert.Equal(0, actual);
         }
+
+        [Fact]
+        public void ProgressionWithDuplicatedNumber_ReturnsTwo()
+        {
+            //Given
+            var input = new List<long>
+            {
+                1,2,2,4
+            };
+
+            //When
+            var actual = CountTriplets.Count(input, 2);
+
+            //Then
+            Assert.Equal(2, actual);
+        }
+
+        [Theory]
+        [InlineData(new long[] { 1, 3, 9, 9, 27, 81 }, 3, 6)]
+        [InlineData(new long[] { 1, 1, 2, 2, 4, 4 }, 2, 8)]
+        public void ProperlyCalculatesNumberOfTriplets(long[] arr, long r, long expected)
+        {
+            var input = arr.ToList();
+
+            var actual = CountTriplets.Count(input, r);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
