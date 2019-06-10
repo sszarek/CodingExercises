@@ -8,59 +8,68 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
     /// </Summary>
     public class FrequencyQueries
     {
-        private static void HandleAdd(Dictionary<int, int> numbers, int num)
+        private static void Increase(Dictionary<int, int> dict, int key)
         {
-            if (numbers.ContainsKey(num))
+            if (dict.ContainsKey(key))
             {
-                numbers[num]++;
+                dict[key]++;
             }
             else
             {
-                numbers[num] = 1;
+                dict[key] = 1;
             }
         }
 
-        private static void HandleRemove(Dictionary<int, int> numbers, int num)
+        private static void Decrease(Dictionary<int, int> dict, int key)
         {
-            if (numbers.ContainsKey(num) && numbers[num] > 0)
+            if (dict.ContainsKey(key) && dict[key] > 0)
             {
-                numbers[num]--;
+                dict[key]--;
             }
         }
 
-        private static bool CheckIfFrequencyPresent(Dictionary<int, int> numbers, int frequency)
+        private static bool CheckIfFrequencyPresent(Dictionary<int, int> counts, int frequency)
         {
-            foreach (var item in numbers)
-            {
-                if (item.Value == frequency)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return counts.ContainsKey(frequency) && counts[frequency] > 0;
         }
 
         public static List<int> FreqQuery(List<List<int>> queries)
         {
             var numbers = new Dictionary<int, int>();
+            var counts = new Dictionary<int, int>();
             var results = new List<int>();
 
             foreach (var query in queries)
             {
-                switch (query[0])
+                var operation = query[0];
+                var number = query[1];
+
+                switch (operation)
                 {
                     case 1:
-                        HandleAdd(numbers, query[1]);
+                        if (numbers.ContainsKey(number))
+                        {
+                            Decrease(counts, numbers[number]);
+                        }
+                        Increase(numbers, number);
+                        Increase(counts, numbers[number]);
                         break;
                     case 2:
-                        HandleRemove(numbers, query[1]);
+                        if (numbers.ContainsKey(number))
+                        {
+                            Decrease(counts, numbers[number]);
+                        }
+                        Decrease(numbers, number);
+                        if (numbers.ContainsKey(number))
+                        {
+                            Increase(counts, numbers[number]);
+                        }
                         break;
                     case 3:
-                        results.Add(CheckIfFrequencyPresent(numbers, query[1]) ? 1 : 0);
+                        results.Add(CheckIfFrequencyPresent(counts, number) ? 1 : 0);
                         break;
                     default:
-                        throw new NotSupportedException($"Operation with code: {query[0]} is not supported.");
+                        throw new NotSupportedException($"Operation with code: {operation} is not supported.");
                 }
             }
 
