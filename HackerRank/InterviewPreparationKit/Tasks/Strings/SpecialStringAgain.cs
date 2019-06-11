@@ -22,19 +22,20 @@ namespace InterviewPreparationKit.Tasks.Strings
                         continue;
                     }
 
+                    // last index, stop iteration
                     if (endIdx == s.Length - 1)
                     {
                         break;
                     }
 
+                    // previous item is different than next one 
                     if (prev != s[endIdx + 1])
                     {
                         break;
                     }
 
                     int firstSegment = endIdx - idx;
-                    int segmentIdx = endIdx + 1;
-                    for (; segmentIdx < s.Length; segmentIdx++)
+                    for (var segmentIdx = endIdx + 1; segmentIdx < s.Length; segmentIdx++)
                     {
                         if (s[segmentIdx] != prev)
                         {
@@ -43,9 +44,12 @@ namespace InterviewPreparationKit.Tasks.Strings
 
                         if (segmentIdx - endIdx == firstSegment)
                         {
-                            substrings += firstSegment;
+                            substrings++;
+                            break;
                         }
                     }
+    
+                    break;
                 }
             }
 

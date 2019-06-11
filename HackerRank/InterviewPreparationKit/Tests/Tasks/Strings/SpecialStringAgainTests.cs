@@ -48,6 +48,10 @@ namespace InterviewPreparationKit.Tests.Tasks.Strings
         [InlineData("asasd", 7)]
         [InlineData("abcbaba", 10)]
         [InlineData("aaaa", 10)]
+        [InlineData("aaab", 7)]
+        [InlineData("aaca", 6)]
+        [InlineData("aacaa", 9)]
+        [InlineData("abab", 6)]
         public void ProperlyCountsSubstrings(string input, long expected)
         {
             var actual = SpecialStringAgain.SubstringCount(input);
