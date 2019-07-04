@@ -33,11 +33,11 @@ namespace InterviewPreparationKit.Tasks.Strings
                         solutions[row, col] = solutions[row - 1, col - 1] + 1;
                     }
                     else
-                    {
-                        var previousRow = solutions[row - 1, col];
-                        var previousCol = solutions[row, col - 1];
-                        
-                        solutions[row,col] = Math.Max(previousRow, previousCol);
+                    {   
+                        solutions[row,col] = Math.Max(
+                            solutions[row - 1, col], 
+                            solutions[row, col - 1]
+                        );
                     }
                 }
             }
