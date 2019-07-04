@@ -18,6 +18,11 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
                 return false;
             }
 
+            if (r == BASE_ONE)
+            {
+                return num == 1;
+            }
+
             long result = 1;
             while (result < num)
             {
@@ -34,17 +39,14 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
             for (int i = 0; i < arr.Count; i++)
             {
                 long value = arr[i];
-                if (IsPowerOf(value, r))
+                List<int> indexes = null;
+                if (!powers.TryGetValue(value, out indexes))
                 {
-                    List<int> indexes = null;
-                    if (!powers.TryGetValue(value, out indexes))
-                    {
-                        indexes = new List<int>();
-                        powers[value] = indexes;
-                    }
-
-                    indexes.Add(i);
+                    indexes = new List<int>();
+                    powers[value] = indexes;
                 }
+
+                indexes.Add(i);
             }
 
             return powers;
@@ -53,15 +55,12 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
         public static long Count(List<long> arr, long r)
         {
             int triplets = 0;
-            var powers = IndexPowersOf(arr, r);
+            List<long> filtered = arr.Where(num => IsPowerOf(num, r)).ToList();
+            var powers = IndexPowersOf(filtered, r);
 
-            for (int idx = 0; idx <= arr.Count - 3; idx++)
+            for (int idx = 0; idx <= filtered.Count - 3; idx++)
             {
-                long first = arr[idx];
-                if (!IsPowerOf(first, r))
-                {
-                    continue;
-                }
+                long first = filtered[idx];
 
                 long second = first * r;
                 List<int> secondIndexes = null;
