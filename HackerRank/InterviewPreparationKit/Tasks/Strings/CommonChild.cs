@@ -1,77 +1,48 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace InterviewPreparationKit.Tasks.Strings
 {
+    /// <Summary>
+    /// Solution to <See href="https://www.hackerrank.com/challenges/common-child/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=strings">Common Child</See> problem. 
+    /// Theoretical background for this solution: <See href="https://en.wikipedia.org/wiki/Longest_common_subsequence_problem">Longest Common Subsequence Problem</See>.
+    /// <Summary>
     public class CommonChild
     {
-        private static int CalculateChildLength(string s1, List<int>[] s2Index, int s1Idx, int s2Idx)
-        {
-            int lastFoundIndex = s2Idx;
-            int childLength = 1;
-
-            for (var childIdx = s1Idx + 1; childIdx < s1.Length; childIdx++)
-            {
-                char curChar = s1[childIdx];
-                List<int> charIndexes = s2Index[curChar - 'A'];
-                if (charIndexes == null)
-                {
-                    continue;
-                }
-
-                IEnumerable<int> acceptableIndexes = charIndexes.Where(idx => idx > lastFoundIndex);
-                if (acceptableIndexes.Count() == 0)
-                {
-                    continue;
-                }
-                lastFoundIndex = acceptableIndexes.First();
-                childLength++;
-            }
-
-            return childLength;
-        }
-
-        private static List<int>[] IndexString(string s)
-        {
-            var chars = new List<int>[26];
-            for (var idx = 0; idx < s.Length; idx++)
-            {
-                char ch = s[idx];
-                int charIdx = ch - 'A';
-                if (chars[charIdx] == null)
-                {
-                    chars[charIdx] = new List<int>();
-                }
-                chars[charIdx].Add(idx);
-            }
-
-            return chars;
-        }
-
         public static int CalculateLongestChildLength(string s1, string s2)
         {
-            List<int>[] str2Index = IndexString(s2);
-            int longestChild = int.MinValue;
-            for (int s1Idx = 0; s1Idx < s1.Length; s1Idx++)
+            var solutions = new int[s1.Length + 1, s2.Length + 1];
+
+            for (var idx = 0; idx < s1.Length; idx++)
             {
-                char s1Char = s1[s1Idx];
-                List<int> indexes = str2Index[s1Char - 'A'];
+                solutions[0, idx] = 0;
+            }
 
-                if (indexes == null)
+            for (var idx = 0; idx < s2.Length; idx++)
+            {
+                solutions[idx, 0] = 0;
+            }
+
+            for (var row = 1; row <= s1.Length; row++)
+            {
+                for (var col = 1; col <= s2.Length; col++)
                 {
-                    continue;
-                }
-
-                int s2CharImdex = indexes.First();
-                int childLength = CalculateChildLength(s1, str2Index, s1Idx, s2CharImdex);
-
-                if (longestChild < childLength)
-                {
-                    longestChild = childLength;
+                    if (s1[row - 1] == s2[col - 1])
+                    {
+                        solutions[row, col] = solutions[row - 1, col - 1] + 1;
+                    }
+                    else
+                    {
+                        var previousRow = solutions[row - 1, col];
+                        var previousCol = solutions[row, col - 1];
+                        
+                        solutions[row,col] = Math.Max(previousRow, previousCol);
+                    }
                 }
             }
 
-            return longestChild < -1 ? 0 : longestChild;
+            return solutions[s1.Length, s2.Length];
         }
     }
 }
