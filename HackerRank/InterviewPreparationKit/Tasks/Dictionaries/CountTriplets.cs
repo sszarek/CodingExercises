@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Triplet = System.Collections.Generic.List<long>;
 
 namespace InterviewPreparationKit.Tasks.Dictionaries
 {
@@ -9,80 +10,45 @@ namespace InterviewPreparationKit.Tasks.Dictionaries
     /// </Summary>
     public class CountTriplets
     {
-        private static readonly long BASE_ONE = 1;
-
-        private static bool IsPowerOf(long num, long r)
-        {
-            if (num == 0)
-            {
-                return false;
-            }
-
-            if (r == BASE_ONE)
-            {
-                return num == 1;
-            }
-
-            long result = 1;
-            while (result < num)
-            {
-                result = result * r;
-            }
-
-            return result == num;
-        }
-
-        private static Dictionary<long, List<int>> IndexPowersOf(List<long> arr, long r)
-        {
-            var powers = new Dictionary<long, List<int>>();
-
-            for (int i = 0; i < arr.Count; i++)
-            {
-                long value = arr[i];
-                List<int> indexes = null;
-                if (!powers.TryGetValue(value, out indexes))
-                {
-                    indexes = new List<int>();
-                    powers[value] = indexes;
-                }
-
-                indexes.Add(i);
-            }
-
-            return powers;
-        }
-
         public static long Count(List<long> arr, long r)
         {
-            int triplets = 0;
-            List<long> filtered = arr.Where(num => IsPowerOf(num, r)).ToList();
-            var powers = IndexPowersOf(filtered, r);
+            long tripletsCount = 0;
+            var stage2 = new Dictionary<long, long>();
+            var stage3 = new Dictionary<long, long>();
 
-            for (int idx = 0; idx <= filtered.Count - 3; idx++)
+            for(int idx = 0; idx < arr.Count; idx++)
             {
-                long first = filtered[idx];
+                long value = arr[idx];
 
-                long second = first * r;
-                List<int> secondIndexes = null;
-                if (!powers.TryGetValue(second, out secondIndexes))
+                if (value == 0)
                 {
                     continue;
                 }
 
-                foreach (int secIdx in secondIndexes.Where(secIdx => secIdx > idx))
+                long nextValue = value * r;
+                if (stage3.ContainsKey(value))
                 {
-                    long third = second * r;
-                    List<int> thirdIndexes = null;
-                    if (!powers.TryGetValue(third, out thirdIndexes))
+                    tripletsCount += stage3[value];
+                }
+
+                if (stage2.ContainsKey(value))
+                {
+                    if (!stage3.ContainsKey(nextValue))
                     {
-                        break;
+                        stage3.Add(nextValue, 0);
                     }
 
-                    triplets += thirdIndexes.Where(thirdIdx => thirdIdx > secIdx).Count();
+                    stage3[nextValue] += stage2[value];
                 }
+
+                if (!stage2.ContainsKey(nextValue))
+                {
+                    stage2.Add(nextValue, 0);
+                }
+                stage2[nextValue]++;
             }
 
-            return triplets;
+            return tripletsCount;
         }
     }
 }
