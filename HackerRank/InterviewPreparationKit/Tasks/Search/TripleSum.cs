@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace InterviewPreparationKit.Tasks.Search
 {
@@ -6,15 +7,16 @@ namespace InterviewPreparationKit.Tasks.Search
     {
         public static long Triplets(int[] a, int[] b, int[] c)
         {
-            Array.Sort(a);
-            Array.Sort(c);
+            int[] aSorted = a.Distinct().OrderBy(val => val).ToArray();
+            int[] bUnique = b.Distinct().ToArray();
+            int[] cSorted = c.Distinct().OrderBy(val => val).ToArray();
 
             long triplets = 0;
             int previous = -1;
 
-            for (int idx = 0; idx < b.Length; idx++)
+            for (int idx = 0; idx < bUnique.Length; idx++)
             {
-                int value = b[idx];
+                int value = bUnique[idx];
                 if (value == previous)
                 {
                     continue;
@@ -24,8 +26,8 @@ namespace InterviewPreparationKit.Tasks.Search
                     previous = value;
                 }
 
-                int aCnt = CountLowerValues(a, value);
-                int cCnt = CountLowerValues(c, value);
+                int aCnt = CountLowerValues(aSorted, value);
+                int cCnt = CountLowerValues(cSorted, value);
                 
                 if (aCnt == 0 || cCnt == 0)
                 {
