@@ -26,8 +26,8 @@ namespace InterviewPreparationKit.Tasks.Search
                     previous = value;
                 }
 
-                int aCnt = CountLowerValues(aSorted, value);
-                int cCnt = CountLowerValues(cSorted, value);
+                long aCnt = CountLowerValues(aSorted, value);
+                long cCnt = CountLowerValues(cSorted, value);
                 
                 if (aCnt == 0 || cCnt == 0)
                 {
