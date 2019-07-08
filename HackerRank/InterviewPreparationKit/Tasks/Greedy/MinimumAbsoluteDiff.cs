@@ -6,17 +6,16 @@ namespace InterviewPreparationKit.Tasks.Greedy
     {
         public static int MinimumAbsoluteDifference(int[] arr)
         {
+            Array.Sort(arr);
             int minimumDiff = int.MaxValue;
-            for(int i = 0; i < arr.Length - 1; i++)
+            for (int i = 0; i < arr.Length - 1; i++)
             {
-                for(int j = i + 1; j < arr.Length; j++)
+                int diff = Math.Abs(arr[i] - arr[i + 1]);
+                if (diff < minimumDiff)
                 {
-                    int diff = Math.Abs(arr[i] - arr[j]);
-                    if (diff < minimumDiff)
-                    {
-                        minimumDiff = diff;
-                    }
+                    minimumDiff = diff;
                 }
+
             }
             return minimumDiff;
         }
