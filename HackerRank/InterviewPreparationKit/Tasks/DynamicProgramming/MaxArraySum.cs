@@ -46,13 +46,3 @@ namespace InterviewPreparationKit.Tasks.DynamicProgramming
         }
     }
 }
-
-/*
-1, 2, 10, 2, -10
-1 -> 10
-1 -> 10 -> -10
-
-2 -> 2
-
-
- */
